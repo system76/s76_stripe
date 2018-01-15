@@ -13,7 +13,7 @@ defmodule Stripe.API do
   end
 
   defp process_request_headers(headers) do
-    key = case Application.get_env(:s76_stripe, :key) do
+    key = case Application.get_env(:s76_stripe, :secret_key) do
       {:system, varname} -> System.get_env(varname)
       key -> key
     end

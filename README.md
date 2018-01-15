@@ -26,9 +26,9 @@ be found at [https://hexdocs.pm/s76_stripe](https://hexdocs.pm/s76_stripe).
 
 ## Configuration
 
-You must either set `config :s76_stripe, :private_key, key` or set the
-`$STRIPE_PRIVATE_KEY` environment variable.
+You must either set `config :s76_stripe, :secret_key, key` or set the
+`$STRIPE_SECRET_KEY` environment variable.
 
 To use webhooks, you must additionally either set `config :s76_stripe,
-:webhook_secret, secret` or set the `$STRIPE_WEBHOOK_SECRET` environment
+:signing_secret, secret` or set the `$STRIPE_SIGNING_SECRET` environment
 variable.

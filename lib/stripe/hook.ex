@@ -22,7 +22,7 @@ defmodule Stripe.Hook do
     header = conn |> get_req_header("stripe-signature") |> List.first
     {:ok, body, _conn} = read_body(conn)
 
-    secret = case Application.get_env(:s76_stripe, :webhook_secret) do
+    secret = case Application.get_env(:s76_stripe, :signing_secret) do
       {:system, varname} -> System.get_env(varname)
       key -> key
     end
