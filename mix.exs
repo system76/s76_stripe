@@ -4,7 +4,7 @@ defmodule Stripe.Mixfile do
   def project do
     [
       app: :s76_stripe,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       description: description(),
