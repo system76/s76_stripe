@@ -42,7 +42,7 @@ defmodule Stripe.Mixfile do
 
   defp package do
     [
-      name: "easy_post",
+      name: "s76_stripe",
       maintainers: ["Ben Cates"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/system76/s76_stripe"},
