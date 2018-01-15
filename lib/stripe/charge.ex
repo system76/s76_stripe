@@ -99,8 +99,9 @@ defmodule Stripe.Charge do
     # transfer_group
   }
 
-  @spec create(map, keyword) :: API.response(t)
-  def create(params, _opts \\ []) do
+  @doc "See https://stripe.com/docs/api/curl#create_charge"
+  @spec create(map) :: API.response(t)
+  def create(params) do
     @endpoint |> API.post(params) |> API.format_response()
   end
 
@@ -108,8 +109,9 @@ defmodule Stripe.Charge do
 
   # TODO def update(charge, params)
 
-  @spec capture(map, keyword) :: API.response(t)
-  def capture(id_or_charge, opts \\ []) do
+  @doc "See https://stripe.com/docs/api/curl#capture_charge"
+  @spec capture(map) :: API.response(t)
+  def capture(id_or_charge) do
     id = if is_map(id_or_charge), do: id_or_charge.id, else: id_or_charge
     "#{@endpoint}/#{id}/capture" |> API.post(%{}) |> API.format_response()
   end
@@ -117,6 +119,7 @@ defmodule Stripe.Charge do
   # TODO def list
 
   @doc false
+  @spec format(map) :: t
   def format(raw_charge) do
     %Charge{
       id: raw_charge["id"],

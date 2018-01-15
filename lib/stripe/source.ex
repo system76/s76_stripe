@@ -64,6 +64,7 @@ defmodule Stripe.Source do
 
   # TODO def update
 
+  @doc "See https://stripe.com/docs/api/curl#attach_source"
   @spec attach(String.t, String.t) :: API.response(t | Card.t)
   def attach(customer_id, source_id) do
     "customers/#{customer_id}/sources"
@@ -71,6 +72,7 @@ defmodule Stripe.Source do
     |> API.format_response()
   end
 
+  @doc "See https://stripe.com/docs/api/curl#detach_source"
   @spec detach(String.t, String.t) :: API.response(t | Card.t)
   def detach(customer_id, source_id) do
     "customers/#{customer_id}/sources/#{source_id}"
@@ -79,6 +81,7 @@ defmodule Stripe.Source do
   end
 
   @doc false
+  @spec format(map) :: t
   def format(raw_source) do
     %Source{
       id: raw_source["id"],

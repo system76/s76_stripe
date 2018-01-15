@@ -1,4 +1,6 @@
 defmodule Stripe.Hook do
+  # TODO: document usage
+
   import Logger
   import Plug.Conn
 

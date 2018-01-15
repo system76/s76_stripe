@@ -53,6 +53,7 @@ defmodule Stripe.Customer do
     # subscriptions: Stripe.list(Subscription.t),
   }
 
+  @doc "See https://stripe.com/docs/api/curl#create_customer"
   @spec create(map) :: API.response(t)
   def create(params) do
     @endpoint |> API.post(params) |> API.format_response()
@@ -67,6 +68,7 @@ defmodule Stripe.Customer do
   # TODO def list
 
   @doc false
+  @spec format(map) :: t
   def format(raw_customer) do
     %Customer{
       id: raw_customer["id"],

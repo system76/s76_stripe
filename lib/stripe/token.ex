@@ -31,6 +31,8 @@ defmodule Stripe.Token do
     used: boolean,
   }
 
+  @doc "See https://stripe.com/docs/api/curl#create_card_token"
+  @spec create(map) :: API.response(t)
   def create(params) do
     @endpoint |> API.post(params) |> API.format_response()
   end
@@ -38,6 +40,7 @@ defmodule Stripe.Token do
   # TODO def retrieve
 
   @doc false
+  @spec format(map) :: t
   def format(raw_token) do
     %Token{
       id: raw_token["id"],

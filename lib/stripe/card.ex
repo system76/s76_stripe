@@ -67,6 +67,7 @@ defmodule Stripe.Card do
   # TODO def delete
   # TODO def list
 
+  @doc false
   @spec format(map) :: t
   def format(raw_card) do
     %Card{

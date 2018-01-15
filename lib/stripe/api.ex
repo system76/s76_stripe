@@ -1,5 +1,5 @@
 defmodule Stripe.API do
-  # NOTE: this is written against version 2015-04-07 of the Stripe API
+  @moduledoc false
 
   use HTTPoison.Base
 
