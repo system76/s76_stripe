@@ -20,8 +20,10 @@ defmodule Stripe.Hook do
     header = conn |> get_req_header("stripe-signature") |> List.first
     {:ok, body, _conn} = read_body(conn)
 
-    # TODO: move into :stripe namespace
-    secret = Application.get_env(:hal, :stripe)[:secret]
+    secret = case Application.get_env(:s76_stripe, :webhook_secret) do
+      {:system, varname} -> System.get_env(varname)
+      key -> key
+    end
 
     event = Poison.decode!(body)
 

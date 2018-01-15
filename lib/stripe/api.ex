@@ -13,14 +13,17 @@ defmodule Stripe.API do
   end
 
   defp process_request_headers(headers) do
-    key = Application.get_env(:hal, :stripe)[:key]
+    key = case Application.get_env(:s76_stripe, :key) do
+      {:system, varname} -> System.get_env(varname)
+      key -> key
+    end
+
     auth_string = Base.encode64("#{key}:")
-    hal_version = Application.spec(:hal, :vsn)
+    app_version = Application.spec(:s76_stripe, :vsn)
 
     [
       {"Authorization", "Basic #{auth_string}"},
-      {"User-Agent", "Stripe/v1 Hal/#{hal_version}"},
-      # {"Content-Type", "application/json"},
+      {"User-Agent", "Stripe/v1 S76Stripe/#{app_version}"},
     ] ++ headers
   end
 

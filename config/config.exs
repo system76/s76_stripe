@@ -21,6 +21,9 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
+config :s76_stripe, :private_key, {:system, "STRIPE_PRIVATE_KEY"}
+config :s76_stripe, :webhook_secret, {:system, "STRIPE_WEBHOOK_SECRET"}
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.
