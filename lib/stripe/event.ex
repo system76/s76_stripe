@@ -29,7 +29,9 @@ defmodule Stripe.Event do
     },
     livemode: boolean,
     pending_webhooks: non_neg_integer,
-    request: nil | %{
+    # FIXME: Should this be top-level resource? There's doesn't appear to be an
+    # endpoint for it.
+    request: nil | String.t | %{
       id: nil | String.t,
       idempotency_key: nil | String.t,
     },
@@ -58,7 +60,8 @@ defmodule Stripe.Event do
   end
 
   defp format_request(nil), do: nil
-  defp format_request(raw_request) do
+  defp format_request(id) when is_binary(id), do: id
+  defp format_request(raw_request) when is_map(raw_request) do
     %{
       id: raw_request["id"],
       idempotency_key: raw_request["idempotency_key"],
