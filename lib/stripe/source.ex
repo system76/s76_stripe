@@ -58,7 +58,11 @@ defmodule Stripe.Source do
     usage: :reusable | :single_use,
   }
 
-  # TODO def create
+  @doc "See https://stripe.com/docs/api/curl#create_source"
+  @spec create(map) :: API.response(t)
+  def create(params) do
+    @endpoint |> API.post(params) |> API.format_response()
+  end
 
   # TODO def retrieve
 
