@@ -11,8 +11,8 @@ defmodule Stripe.Charge do
 
   defstruct [
     id: nil,
-    amount: 0,
-    amount_refunded: 0,
+    amount: Decimal.new(0),
+    amount_refunded: Decimal.new(0),
     application_fee: nil,
     balance_transaction: nil,
     captured: false,
