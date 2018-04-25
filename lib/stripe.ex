@@ -34,7 +34,7 @@ defmodule Stripe do
   defp module_for("event"), do: Stripe.Event
   # defp module_for("file_upload")
   # defp module_for("payout")
-  # defp module_for("refund")
+  defp module_for("refund"), do: Stripe.Refund
   defp module_for("token"), do: Stripe.Token
 
   # Payment Methods
