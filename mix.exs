@@ -4,7 +4,7 @@ defmodule Stripe.Mixfile do
   def project do
     [
       app: :s76_stripe,
-      version: "0.1.4",
+      version: "0.1.5",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       description: description(),
@@ -25,14 +25,14 @@ defmodule Stripe.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:decimal, "~> 1.4"},
-      {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.0"},
-      {:plug, "~> 1.4"},
+      {:decimal,    "~> 1.8"},
+      {:httpoison,  "~> 1.0"},
+      {:poison,     "~> 4.0"},
+      {:plug,       "~> 1.8"},
 
       # Development and testing only dependencies
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
-      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:dialyxir,   "~> 0.5", only: :dev, runtime: false},
+      {:ex_doc,     "~> 0.21", only: :dev},
     ]
   end
 

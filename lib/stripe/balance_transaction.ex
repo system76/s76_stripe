@@ -5,9 +5,7 @@ defmodule Stripe.BalanceTransaction do
   See https://stripe.com/docs/api/curl#balance for further details.
   """
 
-  alias Stripe.{BalanceTransaction}
-
-  @endpoint "balance/history"
+  alias Stripe.BalanceTransaction
 
   defstruct [
     id: nil,

@@ -8,11 +8,11 @@ defmodule Stripe.API do
   # TODO: convert to Stripe.Error.t
   @type response(t) :: {:ok, t} | {:error, HTTPoison.Error.t}
 
-  defp process_url(url) do
+  def process_url(url) do
     @endpoint <> url
   end
 
-  defp process_request_headers(headers) do
+  def process_request_headers(headers) do
     key = case Application.get_env(:s76_stripe, :secret_key) do
       {:system, varname} -> System.get_env(varname)
       key -> key
@@ -27,13 +27,10 @@ defmodule Stripe.API do
     ] ++ headers
   end
 
-  defp process_request_body(body) when is_binary(body), do: body
-  defp process_request_body(params) when is_map(params), do: {:form, format_params(params)}
-  defp process_request_body(params) when is_list(params), do: {:form, params}
-
-  defp process_response_body(body) do
-    Poison.decode! body
-  end
+  def process_request_body(body) when is_binary(body), do: body
+  def process_request_body(params) when is_map(params), do: {:form, format_params(params)}
+  def process_request_body(params) when is_list(params), do: {:form, params}
+  def process_response_body(body), do: Poison.decode!(body)
 
   # TODO: normalize errors
   def format_response({:ok, raw_response}),

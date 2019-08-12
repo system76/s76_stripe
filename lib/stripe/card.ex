@@ -5,7 +5,7 @@ defmodule Stripe.Card do
   See https://stripe.com/docs/api/curl#cards for further details.
   """
 
-  alias Stripe.{API, Card, Customer}
+  alias Stripe.{Card, Customer}
 
   defstruct [
     id: nil,

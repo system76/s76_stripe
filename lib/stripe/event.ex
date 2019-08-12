@@ -5,7 +5,7 @@ defmodule Stripe.Event do
   See https://stripe.com/docs/api/curl#events for further details.
   """
 
-  alias Stripe.{API, Event}
+  alias Stripe.Event
 
   defstruct [
     id: nil,
