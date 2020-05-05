@@ -1,12 +1,14 @@
 defmodule Stripe do
-  # TODO: moduledoc
+  @moduledoc false
 
-  @type reference(t) :: nil | String.t | t
+  require Logger
+
+  @type reference(t) :: nil | String.t() | t
 
   # TODO: must be a supported currency; see https://stripe.com/docs/currencies
-  @type currency_code :: String.t
+  @type currency_code :: String.t()
 
-  @type metadata :: %{optional(String.t) => String.t}
+  @type metadata :: %{optional(String.t()) => String.t()}
 
   @doc """
   Converts a raw Stripe API response into the equivalent Stripe struct.
@@ -20,27 +22,37 @@ defmodule Stripe do
   def format(reference)
   def format(nil), do: nil
   def format(id) when is_binary(id), do: id
-  def format(raw_response) do
-    module_for(raw_response["object"]).format(raw_response)
+
+  def format(%{"object" => object} = raw_response) do
+    case module_for(object) do
+      nil ->
+        Logger.warn("Unknown Stripe object: #{object}")
+
+        raise UndefinedFunctionError,
+          arity: 1,
+          function: "module_for",
+          message: "Undefined Stripe module for #{object} type.",
+          module: Stripe,
+          reason: inspect(raw_response)
+
+      mod ->
+        mod
+    end
   end
 
   # Core Resources
-  # defp module_for("balance")
   defp module_for("balance_transaction"), do: Stripe.BalanceTransaction
   defp module_for("charge"), do: Stripe.Charge
   defp module_for("customer"), do: Stripe.Customer
-  # defp module_for("dispute")
-  # defp module_for("dispute_evidence")
   defp module_for("event"), do: Stripe.Event
-  # defp module_for("file_upload")
-  # defp module_for("payout")
   defp module_for("refund"), do: Stripe.Refund
   defp module_for("token"), do: Stripe.Token
 
   # Payment Methods
-  # defp module_for("bank_account")
   defp module_for("card"), do: Stripe.Card
   defp module_for("source"), do: Stripe.Source
+
+  defp module_for(_), do: nil
 
   @doc false
   def format_currency(cents) do
