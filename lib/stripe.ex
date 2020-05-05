@@ -36,7 +36,7 @@ defmodule Stripe do
           reason: inspect(raw_response)
 
       mod ->
-        mod
+        mod.format(raw_response)
     end
   end
 
