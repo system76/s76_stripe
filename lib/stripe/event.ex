@@ -15,7 +15,7 @@ defmodule Stripe.Event do
     livemode: false,
     pending_webhooks: 0,
     request: nil,
-    status: nil",
+    status: nil,
     type: "",
   ]
 
