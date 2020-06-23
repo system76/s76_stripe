@@ -15,6 +15,7 @@ defmodule Stripe.Event do
     livemode: false,
     pending_webhooks: 0,
     request: nil,
+    status: nil",
     type: "",
   ]
 
@@ -35,6 +36,7 @@ defmodule Stripe.Event do
       id: nil | String.t,
       idempotency_key: nil | String.t,
     },
+    status: nil | String.t,
     type: String.t,
   }
 
@@ -55,6 +57,7 @@ defmodule Stripe.Event do
       livemode: raw_event["livemode"],
       pending_webhooks: raw_event["pending_webhooks"],
       request: format_request(raw_event["request"]),
+      status: raw_event["status"],
       type: raw_event["type"],
     }
   end
