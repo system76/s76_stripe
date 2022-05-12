@@ -1,7 +1,7 @@
 defmodule Stripe.Hook do
   # TODO: document usage
 
-  import Logger
+  require Logger
   import Plug.Conn
 
   def init(options) do
@@ -34,7 +34,7 @@ defmodule Stripe.Hook do
 
     # credo:disable-for-lines:3
     hmac =
-      :crypto.hmac(:sha256, secret, "#{time}.#{body}")
+      :crypto.mac(:hmac, :sha256, secret, "#{time}.#{body}")
       |> Base.encode16(case: :lower)
 
     if Plug.Crypto.secure_compare(hmac, signature) do
