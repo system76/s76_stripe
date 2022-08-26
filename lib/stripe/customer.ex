@@ -65,7 +65,13 @@ defmodule Stripe.Customer do
 
   # TODO def update
 
-  # TODO def delete
+  @doc "See https://stripe.com/docs/api/customers/delete"
+  @spec create(String.t()) :: API.response(t)
+  def delete(customer_id) do
+    "#{@endpoint}/#{customer_id}"
+    |> API.delete()
+    |> API.format_response()
+  end
 
   # TODO def list
 
