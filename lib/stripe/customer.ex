@@ -70,7 +70,6 @@ defmodule Stripe.Customer do
   def delete(customer_id) do
     "#{@endpoint}/#{customer_id}"
     |> API.delete()
-    |> API.format_response()
   end
 
   # TODO def list
